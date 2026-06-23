@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OMAÉ | BY.OMAE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #1a1710;
+      --gold: #C9A96E;
+      --gold-light: #E8D5A3;
+      --text: #0a0905;
+      --text-muted: #3d3828;
+      --card-bg: #f0e8d6;
+      --card-border: rgba(201,169,110,0.45);
+      --card-hover: #e8dcc8;
+    }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,169,110,0.09) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 100%, rgba(201,169,110,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Brand */
+    .brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 56px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      color: var(--gold-light);
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      margin-top: 10px;
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      color: rgba(232,213,163,0.45);
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto 32px;
+    }
+
+    /* Link cards */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border: 1px solid var(--card-border);
+      text-decoration: none;
+      color: var(--text);
+      background: var(--card-bg);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-card:hover {
+      background: var(--card-hover);
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .link-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .link-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .link-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+      transition: fill 0.25s;
+    }
+
+    .link-card:hover .link-icon svg {
+      fill: var(--text);
+    }
+
+    .link-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .link-label {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .link-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-transform: uppercase;
+    }
+
+    .link-arrow {
+      color: var(--gold);
+      font-size: 14px;
+      opacity: 0.6;
+      transition: opacity 0.25s, transform 0.25s;
+      flex-shrink: 0;
+    }
+
+    .link-card:hover .link-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .footer-line {
+      display: block;
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      margin: 0 auto 14px;
+      opacity: 0.3;
+    }
+
+    .footer-text {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: rgba(232,213,163,0.25);
+      text-transform: uppercase;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand                   { animation: fadeUp 0.7s ease both; }
+    .divider                 { animation: fadeUp 0.7s 0.15s ease both; }
+    .link-card:nth-child(1)  { animation: fadeUp 0.6s 0.25s ease both; }
+    .link-card:nth-child(2)  { animation: fadeUp 0.6s 0.35s ease both; }
+    .link-card:nth-child(3)  { animation: fadeUp 0.6s 0.45s ease both; }
+    .link-card:nth-child(4)  { animation: fadeUp 0.6s 0.55s ease both; }
+    .footer                  { animation: fadeUp 0.6s 0.7s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="brand">
+      <div class="brand-name">OMAÉ</div>
+      <div class="brand-tagline">Luxury Bags &amp; Accessories</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="links">
+
+      <!-- Website -->
+      <a class="link-card" href="https://byomaestore.com" target="_blank" rel="noopener">
+        <div class="link-inner">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>
+          </div>
+          <div class="link-text">
+            <span class="link-label">Shop Now</span>
+            <span class="link-title">Website</span>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Instagram -->
+      <a class="link-card" href="https://www.instagram.com/by.omae?igsh=ZXNiMG42eXJhdjd4&utm_source=qr" target="_blank" rel="noopener">
+        <div class="link-inner">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <div class="link-text">
+            <span class="link-label">Follow Us</span>
+            <span class="link-title">Instagram</span>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- TikTok -->
+      <a class="link-card" href="https://www.tiktok.com/@by.omae?_r=1&_t=ZS-97SLQxCAKB6" target="_blank" rel="noopener">
+        <div class="link-inner">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/>
+            </svg>
+          </div>
+          <div class="link-text">
+            <span class="link-label">Watch Us</span>
+            <span class="link-title">TikTok</span>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Facebook -->
+      <a class="link-card" href="https://www.facebook.com/share/1BnfkiRy8R/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <div class="link-inner">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div class="link-text">
+            <span class="link-label">Join Us</span>
+            <span class="link-title">Facebook</span>
+          </div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <span class="footer-line"></span>
+      <p class="footer-text">© 2025 OMAÉ &nbsp;·&nbsp; BYOMAESTORE.COM</p>
+    </div>
+
+  </div>
+</body>
+</html>
